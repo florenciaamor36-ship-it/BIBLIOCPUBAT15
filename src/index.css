@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@layer utilities {
+  /* Safe area padding for mobile iPhones/Android */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s ease-out forwards;
+}
+
+/* Dedicated Print Styles for Book Labels, Spines and Member Cards */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide all UI elements, modals, navbars, buttons */
+  header,
+  nav,
+  .print\:hidden,
+  button,
+  .fixed:not(.print-include),
+  footer {
+    display: none !important;
+  }
+
+  .print\:page-break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print\:page-break-after-always {
+    break-after: page !important;
+    page-break-after: always !important;
+  }
+
+  @page {
+    margin: 8mm;
+    size: A4 portrait;
+  }
+}

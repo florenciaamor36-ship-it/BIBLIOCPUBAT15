@@ -1,0 +1,6 @@
+{
+  "name": "CPU Batán - Comunidad Pastoral Universitaria",
+  "description": "Sistema de gestión de biblioteca física de la Comunidad Pastoral Universitaria (CPU Batán), control de préstamos por pabellones y celdas, e impresión de etiquetas y fichas de control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
