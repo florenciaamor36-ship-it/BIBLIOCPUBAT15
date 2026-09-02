@@ -576,7 +576,7 @@ export const LabelMakerView: React.FC<LabelMakerViewProps> = ({
                             className="p-3 bg-white rounded-lg border-2 border-dashed border-neutral-400 flex flex-row items-stretch justify-start gap-4 print:p-2 print:border-neutral-400 print:page-break-inside-avoid relative"
                           >
                             {/* Cut guide badge */}
-                            <div className="absolute -top-2.5 left-4 bg-black text-white px-2 py-0.2 rounded text-[8px] font-mono font-bold flex items-center gap-1">
+                            <div className="absolute -top-2.5 left-4 bg-black print:hidden text-white px-2 py-0.2 rounded text-[8px] font-mono font-bold flex items-center gap-1">
                               <span>CÓDIGO: {book.bookNumber || book.barcode}</span>
                               <span>&bull;</span>
                               <span>CORTAR POR LA LÍNEA DE PUNTOS</span>
