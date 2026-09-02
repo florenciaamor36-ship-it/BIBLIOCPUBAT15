@@ -1,4 +1,4 @@
-const CACHE = 'biblioteca-cpu-v1';
+const CACHE = 'biblioteca-cpu-v2';
 const APP_SHELL = '/BIBLIOCPUBAT15/';
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.add(APP_SHELL)).then(() => self.skipWaiting()));
