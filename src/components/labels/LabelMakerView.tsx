@@ -548,7 +548,7 @@ export const LabelMakerView: React.FC<LabelMakerViewProps> = ({
 
             {/* FORMAT 1: 2 BOOKS PER A4 PAGE (STANDARD COMFORTABLE KIT) */}
             {labelType === 'combo_2_per_page' && (
-              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] space-y-6 print:min-w-0 print:w-[210mm] print:space-y-0 print:m-0">
+              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] print-sheet space-y-6 print:min-w-0 print:w-[210mm] print:space-y-0 print:m-0">
                 {/* Chunk books into groups of 2 per A4 sheet */}
                 {Array.from({ length: Math.ceil(selectedBooks.length / 2) }).map((_, sheetIndex) => {
                   const sheetBooks = selectedBooks.slice(sheetIndex * 2, sheetIndex * 2 + 2);
@@ -608,7 +608,7 @@ export const LabelMakerView: React.FC<LabelMakerViewProps> = ({
 
             {/* FORMAT 2: 4 BOOKS PER A4 PAGE (COMPACT 2 COLUMNS) */}
             {labelType === 'combo_4_per_page' && (
-              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] space-y-6 print:min-w-0 print:w-[210mm] print:space-y-0 print:m-0">
+              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] print-sheet space-y-6 print:min-w-0 print:w-[210mm] print:space-y-0 print:m-0">
                 {Array.from({ length: Math.ceil(selectedBooks.length / 4) }).map((_, sheetIndex) => {
                   const sheetBooks = selectedBooks.slice(sheetIndex * 4, sheetIndex * 4 + 4);
                   return (
@@ -656,7 +656,7 @@ export const LabelMakerView: React.FC<LabelMakerViewProps> = ({
 
             {/* FORMAT 3: GRID OF SPINE LABELS (16 to 20 per A4 page) */}
             {labelType === 'spine' && (
-              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] bg-white text-black p-4 rounded-xl border border-neutral-300 shadow-xl print:min-w-0 print:w-[210mm] print:shadow-none print:border-0 print:p-1 print:m-0">
+              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] print-sheet bg-white text-black p-4 rounded-xl border border-neutral-300 shadow-xl print:min-w-0 print:w-[210mm] print:shadow-none print:border-0 print:p-1 print:m-0">
                 <div className="border-b border-dashed border-neutral-400 pb-1 mb-3 flex items-center justify-between text-[8px] font-mono text-neutral-500 uppercase print:hidden">
                   <span>ETIQUETAS DE LOMO (2+3/4 DÍGITOS) &bull; CPU BATÁN U.P. 15</span>
                   <span>~16 ETIQUETAS POR HOJA A4</span>
@@ -676,7 +676,7 @@ export const LabelMakerView: React.FC<LabelMakerViewProps> = ({
 
             {/* FORMAT 4: GRID OF POCKET DUE SLIPS (4 per A4 page) */}
             {labelType === 'pocket_slip' && (
-              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] bg-white text-black p-4 rounded-xl border border-neutral-300 shadow-xl print:min-w-0 print:w-[210mm] print:shadow-none print:border-0 print:p-1 print:m-0">
+              <div className="min-w-[560px] sm:min-w-0 w-full max-w-[210mm] print-sheet bg-white text-black p-4 rounded-xl border border-neutral-300 shadow-xl print:min-w-0 print:w-[210mm] print:shadow-none print:border-0 print:p-1 print:m-0">
                 <div className="border-b border-dashed border-neutral-400 pb-1 mb-3 flex items-center justify-between text-[8px] font-mono text-neutral-500 uppercase print:hidden">
                   <span>FICHAS INTERIORES DE CONTROL DE PRÉSTAMOS &bull; CPU BATÁN</span>
                   <span>4 FICHAS POR HOJA A4</span>
