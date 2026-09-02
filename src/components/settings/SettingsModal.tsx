@@ -355,9 +355,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 type="button"
                 onClick={async () => {
                   try {
-                    const response = await fetch('/api/backup/save', {
+                    const response = await fetch('https://api.jsonbin.io/v3/b/6a96e75ada38895dfe2b7db0', {
                       method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
+                      headers: { 'Content-Type': 'application/json', 'X-Access-Key': '$2a$10$QFHG8d6uzHlmasMDdfuNWOibuxj7b7bMybD4rSwCRn1HjW5Jnkb4e' },
                       body: JSON.stringify({ books, members, loans, settings: formData }),
                     });
                     if (response.ok) {
@@ -385,7 +385,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 type="button"
                 onClick={async () => {
                   try {
-                    const response = await fetch('/api/backup/load');
+                    const response = await fetch('https://api.jsonbin.io/v3/b/6a96e75ada38895dfe2b7db0/latest', { headers: { 'X-Access-Key': '$2a$10$QFHG8d6uzHlmasMDdfuNWOibuxj7b7bMybD4rSwCRn1HjW5Jnkb4e' } });
                     if (response.ok) {
                       const data = await response.json();
                       onDataRestored(data);
