@@ -89,4 +89,14 @@ body {
   .print\:border-0 {
     border: 0 !important;
   }
+
+  /* The black cut-guide badge can expand in Chromium print preview;
+     hide it from paper and keep every printed background white. */
+  .print-sheet .absolute.bg-black {
+    display: none !important;
+  }
+  .print-sheet .bg-black {
+    background: transparent !important;
+    color: #000000 !important;
+  }
 }
