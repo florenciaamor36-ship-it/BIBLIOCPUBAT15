@@ -1,0 +1,16 @@
+{
+  "name": "CPU Batán — Biblioteca",
+  "short_name": "Biblioteca CPU",
+  "description": "Gestión de libros, lectores y préstamos de la Biblioteca CPU Batán.",
+  "lang": "es-AR",
+  "start_url": "/BIBLIOCPUBAT15/",
+  "scope": "/BIBLIOCPUBAT15/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "any",
+  "icons": [
+    { "src": "/BIBLIOCPUBAT15/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/BIBLIOCPUBAT15/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
