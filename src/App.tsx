@@ -38,6 +38,7 @@ import { CheckCircle2, AlertCircle, Info } from 'lucide-react';
 export default function App() {
   // Primary Data State loaded from localStorage / initial seed
   const [data, setData] = useState(() => loadLibraryData());
+  const [cloudHydrated, setCloudHydrated] = useState(false);
   const { books, members, loans, settings } = data;
 
   // Active navigation tab: 'dashboard' | 'catalog' | 'loans' | 'members' | 'labels'
@@ -51,6 +52,23 @@ export default function App() {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3500);
   };
+
+  // Load the cloud copy when the app opens. Local data is kept if the bin is empty.
+  useEffect(() => {
+    fetch('https://api.jsonbin.io/v3/b/6a96e75ada38895dfe2b7db0/latest', {
+      headers: { 'X-Access-Key': '$2a$10$FxRzpQtNnYAa6/vpqBCkEea6qyNYJALCybErbZhSJvY/CR/m1gQRO' },
+    })
+      .then((response) => response.ok ? response.json() : null)
+      .then((payload) => {
+        const cloud = payload?.record;
+        if (cloud && Array.isArray(cloud.books) && Array.isArray(cloud.members) && Array.isArray(cloud.loans) && cloud.settings) {
+          const hasCloudData = cloud.books.length > 0 || cloud.members.length > 0 || cloud.loans.length > 0;
+          if (hasCloudData) setData({ books: cloud.books, members: cloud.members, loans: cloud.loans, settings: cloud.settings });
+        }
+      })
+      .catch(() => undefined)
+      .finally(() => setCloudHydrated(true));
+  }, []);
 
   // Modals state
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -76,14 +94,14 @@ export default function App() {
   // Label maker preselection
   const [labelPreselectedBookIds, setLabelPreselectedBookIds] = useState<string[]>([]);
 
-  // Save locally and create a cloud backup 3 seconds after the last change.
-  // The server keeps JSONBin credentials private in its environment variables.
+  // Save locally and create a cloud backup 5 seconds after the last change.
   useEffect(() => {
+    if (!cloudHydrated) return;
     saveLibraryData(books, members, loans, settings);
 
     const timer = window.setTimeout(() => {
       fetch('https://api.jsonbin.io/v3/b/6a96e75ada38895dfe2b7db0', {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'X-Access-Key': '$2a$10$FxRzpQtNnYAa6/vpqBCkEea6qyNYJALCybErbZhSJvY/CR/m1gQRO' },
         body: JSON.stringify({
           version: '2.0',
@@ -97,10 +115,10 @@ export default function App() {
       }).catch((error) => {
         console.error('No se pudo realizar el respaldo automático:', error);
       });
-    }, 3000);
+    }, 5000);
 
     return () => window.clearTimeout(timer);
-  }, [books, members, loans, settings]);
+  }, [books, members, loans, settings, cloudHydrated]);
 
   // Derived library statistics
   const stats = useMemo(() => {
