@@ -66,8 +66,26 @@ body {
     page-break-after: always !important;
   }
 
+  /* Keep all content inside the printer's safe area and remove the
+     decorative border that was being printed around the full sheet. */
   @page {
-    margin: 8mm;
+    margin: 10mm;
     size: A4 portrait;
+  }
+
+  .print-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 273mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .print\:border-0 {
+    border: 0 !important;
   }
 }
